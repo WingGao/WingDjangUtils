@@ -9,12 +9,12 @@ mail_postfix = "163.com"
 
 
 ######################
-def send_mail(to_list, sub, content):
+def send_mail(to_list, sub, content, content_format='plain'):
     '''
     send_mail("aaa@126.com","sub","content")
     '''
     me = mail_user + "<" + mail_user + "@" + mail_postfix + ">"
-    msg = MIMEText(content)
+    msg = MIMEText(content, content_format, 'utf-8')
     msg['Subject'] = sub
     msg['From'] = me
     msg['To'] = ";".join(to_list)
