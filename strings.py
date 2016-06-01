@@ -5,9 +5,15 @@ import string
 __author__ = 'wing'
 
 
-def id_generator(size):
+def id_generator(size, ascii=True, digits=True):
     """生成随机字符串
     :param size: 大小:int
     :return:
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(size))
+    r = ''
+    if ascii:
+        r += string.uppercase
+    if digits:
+        r += string.digits
+
+    return ''.join(random.SystemRandom().choice(r) for _ in range(size))
