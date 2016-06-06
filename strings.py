@@ -17,3 +17,10 @@ def id_generator(size, ascii=True, digits=True):
         r += string.digits
 
     return ''.join(random.SystemRandom().choice(r) for _ in range(size))
+
+
+def get_int(obj, defval=0):
+    try:
+        return int(obj)
+    except:
+        return defval
