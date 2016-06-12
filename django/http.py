@@ -16,6 +16,19 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(_json_str, content_type="application/json")
 
 
+class FileResponse(HttpResponse):
+    TYPE = {
+        'txt': 'text/plain',
+        'csv': 'text/csv',
+    }
+
+    def __init__(self, filename, data):
+        name, ext = filename.rsplit('.')
+        content_type = FileResponse.TYPE[ext]
+        super(FileResponse, self).__init__(data, content_type=content_type)
+        self['Content-Disposition'] = 'attachment;filename="%s"' % filename
+
+
 class Params(object):
     PARAMS_TYPE_STR = "string"
     PARAMS_TYPE_INT = "int"

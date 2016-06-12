@@ -4,7 +4,7 @@ from django.utils import timezone
 import datetime
 
 
-def get_local_day_min(dt=None, year=None, month=None, day=None):
+def get_local_day_min(dt=None, year=None, month=None, day=None, utc=True):
     """讲时间转换成 本地时0点 并转换成UTC
     :param dt:
     :param navie:
@@ -25,5 +25,12 @@ def get_local_day_min(dt=None, year=None, month=None, day=None):
     tm = datetime.datetime.combine(tm, datetime.time.min)
     # 计算后的tm没有tzinfo
     tm = timezone.make_aware(tm)
-    tm = timezone.make_naive(tm, timezone.utc)
-    return tm.replace(tzinfo=timezone.utc)
+    if utc:
+        tm = timezone.make_naive(tm, timezone.utc)
+        return tm.replace(tzinfo=timezone.utc)
+    else:
+        return tm
+
+
+def next_day(daytime):
+    return daytime + datetime.timedelta(days=1)
