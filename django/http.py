@@ -9,7 +9,7 @@ import os
 
 class JSONResponse(HttpResponse):
     def __init__(self, obj, sort_keys=False):
-        if isinstance(obj, dict):
+        if isinstance(obj, dict) or isinstance(obj, list):
             _json_str = json.dumps(obj, sort_keys=sort_keys)
         else:
             _json_str = obj
