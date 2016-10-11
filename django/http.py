@@ -1,6 +1,7 @@
 # coding=utf-8
 from functools import wraps
 from django.http import HttpResponse, HttpResponseNotAllowed
+from bson import json_util
 import json
 from django.utils.decorators import available_attrs
 from ..strings import get_int
@@ -10,7 +11,7 @@ import os
 class JSONResponse(HttpResponse):
     def __init__(self, obj, sort_keys=False):
         if isinstance(obj, dict) or isinstance(obj, list):
-            _json_str = json.dumps(obj, sort_keys=sort_keys)
+            _json_str = json.dumps(obj, sort_keys=sort_keys, default=str)
         else:
             _json_str = obj
         super(JSONResponse, self).__init__(_json_str, content_type="application/json")
