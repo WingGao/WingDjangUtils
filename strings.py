@@ -24,3 +24,10 @@ def get_int(obj, defval=0):
         return int(obj)
     except:
         return defval
+
+
+def startswith(o, s):
+    r = o
+    if isinstance(o, unicode):
+        r = o.encode('utf8')
+    return r.startswith(s)
