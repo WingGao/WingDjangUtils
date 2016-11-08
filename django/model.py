@@ -29,12 +29,16 @@ def create_model_from_dict(mod, dicta):
             continue
 
         if hasattr(m, k):
-            matt = getattr(m, k)
-            if isinstance(matt, models.IntegerField) or isinstance(matt, models.SmallIntegerField):
-                nv = int(v)
-            else:
-                nv = v
-            setattr(m, k, nv)
+            try:
+                matt = getattr(m, k)
+                if isinstance(matt, models.IntegerField) or isinstance(matt, models.SmallIntegerField) or \
+                        isinstance(matt, int):
+                    nv = int(v)
+                else:
+                    nv = v
+                setattr(m, k, nv)
+            except:
+                pass
 
     return m
 
