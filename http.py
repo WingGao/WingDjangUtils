@@ -2,7 +2,7 @@ import requests
 import os
 
 
-def download(url, filename=None, create_dirs=False):
+def download(url, filename=None, create_dirs=False, can_down_func=None):
     if filename is None:
         local_filename = url.split('/')[-1]
     else:
@@ -14,7 +14,7 @@ def download(url, filename=None, create_dirs=False):
             os.makedirs(dir_name)
 
     r = requests.get(url, stream=True)
-    if r.status_code == 200:
+    if (can_down_func is not None and can_down_func(r)) or (can_down_func is None and r.status_code == 200):
         with open(local_filename, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk:
