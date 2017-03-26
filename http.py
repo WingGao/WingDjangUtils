@@ -1,5 +1,6 @@
 import requests
 import os
+import re
 
 
 def download(url, filename=None, create_dirs=False, can_down_func=None):
@@ -22,3 +23,21 @@ def download(url, filename=None, create_dirs=False, can_down_func=None):
         return local_filename
     else:
         return None
+
+
+def auto_encoding(rep):
+    """
+    :param requests.Response request:
+    :return:
+    """
+    charlist = re.findall(r'<meta http-equiv="Content-Type".*?content="[^"]*?charset=([\w\-]+)', rep.text)
+    if len(charlist) > 0:
+        rep.encoding = charlist[0]
+        return
+
+    charlist = re.findall(r'<meta.*?charset="([^"]+)"', rep.text)
+    if len(charlist) > 0:
+        rep.encoding = charlist[0]
+        return
+
+    return rep.encoding
