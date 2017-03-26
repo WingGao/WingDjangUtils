@@ -31,3 +31,12 @@ def startswith(o, s):
     if isinstance(o, unicode):
         r = o.encode('utf8')
     return r.startswith(s)
+
+
+def is_empty(s):
+    """
+    判断是否为None或者空字符串，空白也算0
+    :param str s:
+    :return bool:
+    """
+    return s is None or len(s.strip()) == 0
