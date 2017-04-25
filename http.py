@@ -14,7 +14,8 @@ def download(url, filename=None, create_dirs=False, can_down_func=None):
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
 
-    r = requests.get(url, stream=True)
+    r = requests.get(url, stream=True, headers={
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'})
     if (can_down_func is not None and can_down_func(r)) or (can_down_func is None and r.status_code == 200):
         with open(local_filename, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024):
