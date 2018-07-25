@@ -24,7 +24,7 @@ ESCAPE_KEYS = ['id']
 
 def create_model_from_dict(mod, dicta):
     m = mod()
-    for k, v in dicta.items():
+    for k, v in list(dicta.items()):
         if k in ESCAPE_KEYS:
             continue
 
@@ -47,7 +47,7 @@ def is_clean(mod, exclude=None):
     try:
         mod.clean_fields(exclude)
         return True
-    except ValidationError, e:
+    except ValidationError as e:
         return False
 
 

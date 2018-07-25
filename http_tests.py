@@ -15,7 +15,7 @@ class HTTPTest(unittest.TestCase):
 <meta name="keywords" content="" />
 <meta name="description" content="" />'''
         auto_encoding(rep)
-        print rep.encoding
+        print(rep.encoding)
 
         rep._content = '''
         <!DOCTYPE html>
@@ -26,4 +26,4 @@ class HTTPTest(unittest.TestCase):
     <title>PyPersonalCollection</title>
         '''
         auto_encoding(rep)
-        print rep.encoding
+        print(rep.encoding)

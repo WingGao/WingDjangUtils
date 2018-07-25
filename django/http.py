@@ -104,7 +104,7 @@ def clear_request_meta(request):
     :return:
     """
     d = {}
-    for k, v in request.META.items():
+    for k, v in list(request.META.items()):
         if k not in os.environ and not k.startswith('wsgi.'):
             d[k] = v
     return d

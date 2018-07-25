@@ -16,7 +16,7 @@ def id_generator(size, ascii=True, digits=True):
     if digits:
         r += string.digits
 
-    return ''.join(random.SystemRandom().choice(r) for _ in range(size))
+    return ''.join(random.SystemRandom().choice(r) for _ in list(range(size)))
 
 
 def get_int(obj, defval=0):
@@ -28,7 +28,7 @@ def get_int(obj, defval=0):
 
 def startswith(o, s):
     r = o
-    if isinstance(o, unicode):
+    if isinstance(o, str):
         r = o.encode('utf8')
     return r.startswith(s)
 

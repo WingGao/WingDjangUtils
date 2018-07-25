@@ -1,14 +1,14 @@
-from urlparse import urljoin
-import HTMLParser
+from urllib.parse import urljoin
+import html.parser
 import requests
 import re
 
 __author__ = 'wing'
-html_parser = HTMLParser.HTMLParser()
+html_parser = html.parser.HTMLParser()
 
 
 def full_url(root, url):
-    return html_parser.unescape(urljoin(root, url))
+    return html.unescape(urljoin(root, url))
 
 
 def my_ip():

@@ -25,13 +25,13 @@ def send_mail(to_list, sub, content, content_format='plain'):
         s.sendmail(me, to_list, msg.as_string())
         s.close()
         return True
-    except Exception, e:
-        print str(e)
+    except Exception as e:
+        print(str(e))
         return False
 
 
 if __name__ == '__main__':
     if send_mail(['wing.gao@live.com'], "subject", "content"):
-        print "success"
+        print("success")
     else:
-        print "fail"
+        print("fail")

@@ -3,7 +3,7 @@ Serialize data to/from JSON
 """
 
 # Avoid shadowing the standard library json module
-from __future__ import absolute_import, unicode_literals
+
 
 import datetime
 import decimal
