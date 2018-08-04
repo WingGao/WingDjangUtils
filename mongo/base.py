@@ -94,7 +94,7 @@ class ObjectBase(object):
     def get_dict(self, with_id=False):
         # 需要拷贝，否则会被pop掉，无法二次使用
         x = copy.copy(self.__dict__)
-        for i in x.keys():
+        for i in list(x.keys()):
             if i == '_id' and with_id:
                 x['_id'] = str(x['_id'])
             elif i.startswith('_'):

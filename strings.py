@@ -12,7 +12,7 @@ def id_generator(size, ascii=True, digits=True):
     """
     r = ''
     if ascii:
-        r += string.uppercase
+        r += string.ascii_uppercase
     if digits:
         r += string.digits
 
