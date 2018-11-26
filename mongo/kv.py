@@ -18,6 +18,13 @@ class KVItem(ObjectBase):
     def set(cls, key, value):
         return KVItem(key=key, value=value).save()
 
+    @classmethod
+    def get(cls, key):
+        item = KVItem()
+        if item.find_one({'key': key}):
+            return item.value
+        return None
+
 
 def kv_index():
     KVItem().get_collection_inst().create_index('key', unique=True)

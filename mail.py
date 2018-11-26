@@ -1,5 +1,7 @@
 import smtplib
 from email.mime.text import MIMEText
+import random
+import string
 
 #####################
 mail_host = "smtp.163.com"
@@ -28,6 +30,22 @@ def send_mail(to_list, sub, content, content_format='plain'):
     except Exception as e:
         print(str(e))
         return False
+
+
+def random_mail():
+    method = random.choice(['qq', 'name'])
+    acc = ''
+    rd = random.SystemRandom()
+    if method == 'qq':
+        acc = str(rd.randint(1171748, 9159171748))
+    elif method == 'name':  # gyy19910101/gyy1010
+        acc = ''.join([rd.choice(string.ascii_lowercase) for i in
+                       range(rd.randint(2, 3))])
+        acc += '{}{:0>2}{:0>2}'.format(rd.choice([2018 - rd.randint(16, 50), ''])
+                                       , rd.randint(1, 12), rd.randint(1, 28))
+    host = rd.choice(['qq.com', '163.com', 'sina.com', 'sohu.com'])
+
+    return acc + '@' + host
 
 
 if __name__ == '__main__':
