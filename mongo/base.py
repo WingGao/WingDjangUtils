@@ -147,3 +147,7 @@ class ObjectBase(object):
                 return e
             else:
                 raise e
+
+    def delete(self):
+        pk = self.__pk()
+        return self._collection.remove(pk, multi=False)
