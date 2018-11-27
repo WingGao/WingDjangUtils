@@ -12,7 +12,7 @@ class KVItem(ObjectBase):
 
     @classmethod
     def exist(cls, key):
-        return KVItem().find_one({'key': key})
+        return KVItem().load_by({'key': key})
 
     @classmethod
     def set(cls, key, value):
@@ -21,7 +21,7 @@ class KVItem(ObjectBase):
     @classmethod
     def get(cls, key):
         item = KVItem()
-        if item.find_one({'key': key}):
+        if item.load_by({'key': key}):
             return item.value
         return None
 

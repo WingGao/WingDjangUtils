@@ -116,9 +116,9 @@ class ObjectBase(object):
         else:
             setattr(self, pkname, pk)
 
-        return self.find_one({pkname: self._to_pk(pk)})
+        return self.load_by(self.__pk())
 
-    def find_one(self, args):
+    def load_by(self, args):
         try:
             c = self._collection.find_one(args)
         except Exception as e:
@@ -129,6 +129,14 @@ class ObjectBase(object):
 
         self.load_object(c, include_id=True)
         return True
+
+    def find_one(self, where):
+        obj = self._collection.find_one(where)
+        if obj is None:
+            return None
+        item = self.__class__()
+        item.load_object(obj, include_id=True)
+        return item
 
     def save(self, catch=True):
         self._gen_id()
