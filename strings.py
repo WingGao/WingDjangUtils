@@ -40,3 +40,20 @@ def is_empty(s):
     :return bool:
     """
     return s is None or len(s.strip()) == 0
+
+
+def contains_one(s, ls):
+    """
+    反向包含
+    Examples:
+        contains_one('abcde', ['a','c','ddd']) == True
+    Args:
+        s: 字符串
+        ls: 中标字符串列表
+    Returns:
+        bool
+    """
+    for i in ls:
+        if i in s:
+            return True
+    return False
