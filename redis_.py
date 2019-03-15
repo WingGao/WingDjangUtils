@@ -1,10 +1,11 @@
+# coding=utf-8
 import redis
 
 
 class RedisClient(redis.Redis):
     def __init__(self, prefix, host='localhost', port=6379, db=0, **kwargs):
         self.prefix = prefix
-        super().__init__(host=host, port=port, db=db, **kwargs)
+        super(RedisClient).__init__(host=host, port=port, db=db, **kwargs)
 
     def get(self, name, default=None):
         """
