@@ -2,7 +2,7 @@
 __author__ = 'wing'
 from django.utils import timezone
 import datetime
-from ..time import get_datetime_milliseconds
+from ..time_ import get_datetime_milliseconds
 
 
 def get_local_day_min(dt=None, year=None, month=None, day=None, utc=True):
