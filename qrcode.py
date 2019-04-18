@@ -1,5 +1,5 @@
 # coding=utf-8
-import urllib
+import urllib.parse
 
 import requests
 import re
@@ -15,6 +15,6 @@ def build_qrcode(url):
 
     """
     u = url.split('://')[1]
-    r = requests.get('https://cli.im/api/qrcode/code?text=//%s&mhid=skvHDl7tm50hMHcoK9JdPK8' % urllib.quote(u))
+    r = requests.get('https://cli.im/api/qrcode/code?text=//%s&mhid=skvHDl7tm50hMHcoK9JdPK8' % urllib.parse.quote(u))
     qru = re.findall(r'qrcode_plugins_img ="(.*?)"', r.text)[0]
     return qru

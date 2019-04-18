@@ -41,7 +41,7 @@ def query_task(app, name, args=None, one=False):
                     return argsfunc(task)
             return False
 
-        for k, worker in workers.items():
+        for k, worker in list(workers.items()):
             for t in worker:
                 if check_task(t):
                     out.append(t)
@@ -59,7 +59,7 @@ def get_first_task(res):
     Returns:
         详细 ((string, dict)):
     """
-    for k, ts in res.items():
+    for k, ts in list(res.items()):
         for k2 in ts:
             return ts[k2]
     return None

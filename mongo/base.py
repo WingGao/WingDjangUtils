@@ -24,12 +24,12 @@ class ObjectBase(object):
         self._collection = get_db().get_collection(collection_name, collection_options)
         self._id = None
         # 设置自动参数
-        for k, v in kwargs.items():
+        for k, v in list(kwargs.items()):
             if hasattr(self, k):
                 setattr(self, k, v)
 
     def load_object(self, obj, include_id=False):
-        for i in obj.keys():
+        for i in list(obj.keys()):
             if not i.startswith('_'):
                 setattr(self, i, obj[i])
         if include_id:

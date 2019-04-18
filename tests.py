@@ -2,7 +2,7 @@ __author__ = 'wing'
 from . import http
 import os
 import unittest
-import qrcode
+from . import qrcode
 from . import web
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
