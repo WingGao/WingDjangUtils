@@ -27,6 +27,12 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(_json_str, content_type="application/json")
 
 
+class JSONResponseErr(JSONResponse):
+    def __init__(self, obj, **kw):
+        super(JSONResponseErr, self).__init__(obj, **kw)
+        self.status_code = 400
+
+
 class FileResponse(HttpResponse):
     TYPE = {
         'txt': 'text/plain',
