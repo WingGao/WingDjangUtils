@@ -14,7 +14,8 @@ collection_options = options = CodecOptions(tz_aware=True)
 
 
 def get_db():
-    client = MongoClient(settings.MONGODB['HOST'], settings.MONGODB['PORT'], connect=False, maxPoolSize=100)
+    client = MongoClient(settings.MONGODB['HOST'], settings.MONGODB['PORT'], connect=False, maxPoolSize=100,
+                         username=settings.MONGODB['USER'], password=settings.MONGODB['PASS'])
     return client[settings.MONGODB['NAME']]
 
 
